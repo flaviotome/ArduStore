@@ -1,0 +1,67 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body{
+  height: 100%;
+}
+/*--------- Product List ------------ */
+.row-product {
+  padding-left: 50px;
+  padding-right: 50px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.col-product {
+  margin: 10px;
+  background-color: white;
+  border-radius: 20px;
+
+}
+
+.col-product:hover {
+  opacity: .75;
+  transition: 0.25s opacity;
+  cursor: pointer;
+}
+
+.product-name {
+  font-weight: bold;
+  font-size: large;
+}
+
+
+/*--------- add to cart Button ------------ */
+.btn-cart {
+  border-color:#D9B70D !important;
+  color: #253C59 !important;
+}
+
+.btn-cart:hover {
+  background-color: #D9B70D !important;
+}
+
+.btn-cart:focus {
+  background-color: #D9B70D !important;
+}
+
+.btn-cart:focus::shadow {
+  color: #D9B70D !important;
+}
+
+
+/*--------- Banner ------------ */
+
+.banner{
+  margin-bottom: 50px;
+  padding-bottom: 20px;
+  text-align: center;
+  border-bottom-style: solid;
+  border-width: 1px;
+  border-color: #99B4BF;
+}
+
+.banner span{
+  font-size: xx-large;
+  font-weight: bold;
+  color: #253C59;
+}

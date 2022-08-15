@@ -1,0 +1,60 @@
+.carousel {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  height: auto;
+  width: 100%;
+}
+
+
+.carousel-item img {
+  width: 100%;
+  height: auto;
+}
+
+.carousel-txt-1 {
+  font-size: 30px;
+  margin: 50px;
+  color: #d9b70d !important;
+}
+
+.carousel-txt-2 {
+  color: #99B4BF !important;
+  margin: 50px
+}
+
+.row-product {
+  padding-left: 50px;
+  padding-right: 50px;
+  margin-top: 5px;
+  margin-bottom: 50px;
+}
+
+.col-product {
+  margin: 10px;
+  background-color: white;
+  border-radius: 20px;
+
+}
+
+.col-product:hover {
+  opacity: .8;
+  transition: 0.25s opacity;
+  cursor: pointer;
+}
+
+.product-name {
+  font-weight: bold;
+  font-size: large;
+  color: #2D4B73;
+}
+
+.btn-banner {
+  position: relative;
+  bottom: 60px;
+  width: 20%;
+  background-color: #d9b70d;
+  color: #253C59 ;
+  font-weight: bold;
+}

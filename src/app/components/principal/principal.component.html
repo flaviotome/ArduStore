@@ -1,0 +1,167 @@
+<section
+  class="container-fluid p-0"
+  style="margin-bottom: 70px; text-align: center"
+>
+  <div
+    id="carouselExampleControls"
+    class="carousel slide w-100 m-0"
+    data-bs-ride="carousel"
+  >
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="assets/banner.png" class="d-block w-100" alt="..." />
+      </div>
+      <div class="carousel-item">
+        <img src="assets/banner 2.gif" class="d-block w-100" alt="..." />
+      </div>
+    </div>
+    <button
+      class="carousel-control-prev"
+      type="button"
+      data-bs-target="#carouselExampleControls"
+      data-bs-slide="prev"
+    >
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button
+      class="carousel-control-next"
+      type="button"
+      data-bs-target="#carouselExampleControls"
+      data-bs-slide="next"
+    >
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</section>
+
+<section class="container" style="text-align: center">
+  <!-------------------------- Banner ----------------------->
+  <div class="row banner">
+    <div class="col-md">
+      <span> Placas Arduino </span>
+    </div>
+  </div>
+
+  <!-------------------------- Arduino Boards ----------------------->
+  <div class="row row-product">
+    <div
+      id="{{ i.productId }}"
+      class="col-sm col-product"
+      *ngFor="let i of getBoardList()"
+    >
+      <!-------------------------- Name ----------------------->
+      <p class="product-name" (click)="showProductPage2(i.productId)">
+        {{ i.productName }}
+      </p>
+      <!-------------------------- Image ----------------------->
+      <img
+        src="{{ i.productImg }}"
+        style="width: 200px; height: 200px"
+        alt="..."
+        (click)="showProductPage2(i.productId)"
+      />
+      <!-------------------------- Price ----------------------->
+      <p class="product-price" (click)="showProductPage2(i.productId)">
+        {{ i.productPrice | currency: "BRL" }}
+      </p>
+      <p>ou</p>
+      <p>10 x {{ splitPrice(i.productPrice) | currency: "BRL" }}</p>
+      <!-------------------------- Button ----------------------->
+      <p>
+        <button
+          class="btn btn-cart"
+          type="submit"
+          (click)="addToCart(i.productId)"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+        >
+          <i class="fa fa-shopping-cart"></i> Adicionar ao Carrinho
+        </button>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="container">
+  <!-------------------------- Banner ----------------------->
+  <div class="row banner">
+    <div class="col-md">
+      <span> Sensores </span>
+    </div>
+  </div>
+
+  <div class="row row-product">
+    <div
+      id="{{ i.productId }}"
+      class="col-sm col-product"
+      *ngFor="let i of getSensorList()"
+    >
+      <!-------------------------- Name ----------------------->
+      <p class="product-name" (click)="showProductPage2(i.productId)">
+        {{ i.productName }}
+      </p>
+      <!-------------------------- Image ----------------------->
+      <img
+        src="{{ i.productImg }}"
+        style="width: 200px; height: 200px"
+        alt="..."
+        (click)="showProductPage2(i.productId)"
+      />
+      <!-------------------------- Price ----------------------->
+      <p class="product-price" (click)="showProductPage2(i.productId)">
+        {{ i.productPrice | currency: "BRL" }}
+      </p>
+      <!-------------------------- Button ----------------------->
+      <p>
+        <button
+          class="btn btn-outline-success btn-cart"
+          type="submit"
+          (click)="addToCart(i.productId)"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+        >
+          <i class="fa fa-shopping-cart"></i> Adicionar ao Carrinho
+        </button>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!---------------- Modal ------------------>
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <p><i class="fa fa-check-circle" style="font-size: 50px"></i></p>
+        <span>Produto adicionado do carrinho !</span>
+      </div>
+      <div class="modal-footer color-1">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          style="background-color: #d9b70d"
+        >
+          Continuar comprando!
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-bs-dismiss="modal"
+          routerLink="/cart"
+          style="background-color: #bf8d30"
+        >
+          Ver Carrinho
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

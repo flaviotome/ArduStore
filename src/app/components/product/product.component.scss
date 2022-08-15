@@ -1,0 +1,50 @@
+.row-product {
+  text-align: center;
+  padding: 100px;
+}
+
+.product-image {
+  max-width: 500px;
+  max-height: 500px;
+  width: 80%;
+}
+
+.p-name {
+  font-size: 40px;
+  font-weight: bold;
+  color: #2D4B73;
+
+}
+
+.p-price {
+  color: #D9B70D !important;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.p-description {
+  text-align: justify;
+
+  color: black !important;
+
+
+}
+
+.btn-buy {
+  height: 150px;
+  width: 300px;
+  margin: 50px;
+}
+
+.line {
+  border-bottom-style: solid;
+  border-width: 1px;
+  border-color: rgb(201, 201, 201);
+  margin-bottom: 20px;
+}
+
+
+.pix-img{
+  height: 70px;
+  margin: 20px
+}

@@ -1,0 +1,30 @@
+.navbar {
+  background-color: #253C59;
+}
+
+.logo {
+  width: 50px;
+}
+
+a,
+button {
+  color: aliceblue !important;
+  font-weight: bold;
+}
+
+ul {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+li {
+  margin: 2px;
+  padding: 2px;
+}
+
+li:hover {
+  background-color: #99B4BF;
+  border-radius: 10px;
+  transition: .2s background-color;
+}

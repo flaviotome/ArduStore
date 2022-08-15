@@ -1,0 +1,72 @@
+<section class="container">
+  <!-------------------------- Banner ----------------------->
+  <div class="row m-0 banner mb-5">
+    <div class="col-md">
+      <span> {{ product.productName }} </span>
+    </div>
+  </div>
+
+  <div class="row row-product">
+    <div class="col-lg col-product">
+      <img class="product-image" src="{{ product.productImg }}" />
+    </div>
+    <div class="col-lg col-product col-product-description">
+      <p class="p-price">{{ product.productPrice | currency: "BRL" }}</p>
+      <p>Em até 10 x {{ splitPrice(product.productPrice) | currency: "BRL" }}</p>
+      <p><button
+        class="btn btn-cart"
+        type="submit"
+        (click)="addToCart(product.productId)"
+        data-bs-toggle="modal"
+        data-bs-target="#Modal"
+      >
+        <i class="fa fa-shopping-cart"></i> Adicionar ao Carrinho
+      </button></p>
+      <img class="pix-img" src="assets/pix.png" />
+      <img class="pix-img" src="assets/credit.png" />
+      <img class="pix-img" src="assets/boleto.png" />
+      <div class="line"></div>
+      <p class="p-description">{{ product.productDescription }}</p>
+      <div class="line"></div>
+    </div>
+  </div>
+</section>
+
+<!---------------- Modal ----------------->
+<div
+  class="modal fade"
+  id="Modal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Carrinho de compras</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <span>Produto adicionado do carrinho !</span>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Continuar comprando!
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-bs-dismiss="modal"
+          routerLink="/cart"
+        >
+          Ver Carrinho
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

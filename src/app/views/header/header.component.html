@@ -1,0 +1,75 @@
+<section class="container-fluid p-0">
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container-fluid">
+        <a routerLink=""><img class="logo" src="/assets/arduino-logo.png" /></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                routerLink="/principal"
+                ><i class="fa fa-home"></i> Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                routerLink="/boards"
+                (click)="setProductListType('board')"
+                >Placas</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                routerLink="/sensors"
+                (click)="setProductListType('sensor')"
+                >Sensores</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                routerLink="/sensors"
+                (click)="setProductListType('sensor')"
+                >Acessórios</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                routerLink="/sensors"
+                (click)="setProductListType('sensor')"
+                >Kit Robótica</a
+              >
+            </li>
+          </ul>
+
+          <button class="btn btn-outline-success" (click)="openCartPage()">
+            <i class="fa fa-shopping-cart"></i>
+            <span style="color: white !important">
+              {{ getTotalCost() | currency: "BRL" }}</span
+            >
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+</section>

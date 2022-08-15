@@ -1,0 +1,91 @@
+<section class="container-fluid p-0 section-cart">
+  <!-------------------------- Banner ----------------------->
+  <div class="row m-0 banner" >
+    <div class="col-md" >
+      <span > Carrinho </span>
+    </div>
+  </div>
+
+<!-------------------------- Cart List ----------------------->
+  <div class="row row-cart-list">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item d-flex" *ngFor="let i of getCartList()">
+        <img class="product-img" src="{{ i.productImg }}" />
+        <span class="product-name">{{ i.productName }} </span>
+        <span class="product-price">
+          {{ i.productPrice | currency: "BRL" }}
+        </span>
+
+        <!-------------------------- Remove buttom ----------------------->
+        <button
+          class="btn btn-outline-danger btn-remove"
+          type="button"
+          data-bs-toggle="modal"
+          data-bs-target="#Modal"
+        >
+          <i class="fa fa-remove"></i>
+        </button>
+
+        <!--------------------------- Modal ------------------------------->
+        <div
+          class="modal fade"
+          id="Modal"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                Deseja remover o produto do carrinho?
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                  (click)="removeFromCartList(i.productId)"
+                >
+                  Remover
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  data-bs-dismiss="modal"
+                >
+                  Cancelar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+
+    <!-------------------------- Total cost ----------------------->
+    <div class="container row" *ngIf="getTotalCost() > 0; else elseBlock">
+      <div class="col-6">
+        <span class="total-cost-txt">Valor total: {{ getTotalCost() | currency: "BRL" }}</span>
+      </div>
+
+      <div class="col-6 d-flex">
+        <button class="btn" type="button">Finalizar Compra</button>
+      </div>
+    </div>
+    <ng-template #elseBlock>
+      <p style="text-align: center">
+        <i class="fa fa-warning" style="font-size: 50px"></i>
+      </p>
+      <span style="text-align: center">O Carrinho está vazio</span>
+    </ng-template>
+  </div>
+</section>
