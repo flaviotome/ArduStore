@@ -16,7 +16,12 @@ export class PrincipalComponent implements OnInit {
     private cartService: CartService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log('teste')
+    this.productService.retornaProdutos().subscribe((products) => {
+      console.log(products);
+    });
+  }
 
   showProductListPage(type: String) {
     this.router.navigateByUrl('/productList');

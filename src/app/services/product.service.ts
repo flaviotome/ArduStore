@@ -1,9 +1,14 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Product } from '../models/product';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
+
+
   productList = [
     {
       productId: '1',
@@ -89,7 +94,9 @@ export class ProductService {
   //used to inform wich type of product list will be opened in the product-list Page
   productType = '';
 
-  constructor() {
+  url = "http://localhost:3000/products"
+
+  constructor(private httpClient: HttpClient) {
     this.boardList = this.productListTypeFilter('board');
     this.sensorList = this.productListTypeFilter('sensor');
   }
@@ -116,4 +123,12 @@ export class ProductService {
   getSensorList() {
     return this.productListTypeFilter('sensor');
   }
+
+  retornaProdutos(): Observable<Product[]>{
+
+    return this.httpClient.get<Product[]>(this.url)
+
+  }
+
+
 }
