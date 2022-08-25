@@ -1,7 +1,7 @@
+import { Product } from './../models/product';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Product } from '../models/product';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +9,7 @@ import { Product } from '../models/product';
 export class ProductService {
   listaDePRodutos: Product[] = [
     {
-      id: '',
+      _id: '',
       productName: '',
       productPrice: 0,
       productDescription: '',
@@ -31,38 +31,42 @@ export class ProductService {
   url = 'http://localhost:3000/products';
 
   constructor(private httpClient: HttpClient) {
-    this.boardList = this.productListTypeFilter('board');
-    this.sensorList = this.productListTypeFilter('sensor');
-    this.retornaProdutos().subscribe((products) => {
+
+    this.loadProducts().subscribe((products) => {
       this.listaDePRodutos = products;
     });
   }
 
+  /* load de products list from database */
+  loadProducts(): Observable<Product[]> {
+    return this.httpClient.get<Product[]>(this.url);
+  }
+
+  //find an element by its id and returns it
   getProductFromId(id: any) {
     let result: any;
-    result = this.listaDePRodutos.find((element) => element.id == id);
+    result = this.listaDePRodutos.find((element) => element._id == id);
 
     return result;
   }
 
-  //filters the productList by the type
+  /* filters the productList by the type */
   productListTypeFilter(type: string) {
     return this.listaDePRodutos.filter((p) => p.productType == type);
   }
 
+  //return the products list
   getProductList() {
     return this.listaDePRodutos;
   }
 
+  //return the products that type == 'board'
   getBoardList() {
     return this.productListTypeFilter('board');
   }
 
+  //return the products that type == 'sensor'
   getSensorList() {
     return this.productListTypeFilter('sensor');
-  }
-
-  retornaProdutos(): Observable<Product[]> {
-    return this.httpClient.get<Product[]>(this.url);
   }
 }

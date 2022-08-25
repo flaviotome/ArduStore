@@ -47,12 +47,12 @@
   <!-------------------------- Arduino Boards ----------------------->
   <div class="row row-product">
     <div
-      id="{{ i.id }}"
+      id="{{ i._id }}"
       class="col-sm col-product"
       *ngFor="let i of getBoardList()"
     >
       <!-------------------------- Name ----------------------->
-      <p class="product-name" (click)="showProductPage2(i.id)">
+      <p class="product-name" (click)="showProductPage2(i._id)">
         {{ i.productName }}
       </p>
       <!-------------------------- Image ----------------------->
@@ -60,10 +60,10 @@
         src="{{ i.productImg }}"
         style="width: 200px; height: 200px"
         alt="..."
-        (click)="showProductPage2(i.id)"
+        (click)="showProductPage2(i._id)"
       />
       <!-------------------------- Price ----------------------->
-      <p class="product-price" (click)="showProductPage2(i.id)">
+      <p class="product-price" (click)="showProductPage2(i._id)">
         {{ (i.productPrice).toString() | currency: "BRL" }}
       </p>
       <p>ou</p>
@@ -73,7 +73,7 @@
         <button
           class="btn btn-cart"
           type="submit"
-          (click)="addToCart(i.id)"
+          (click)="addToCart(i._id)"
           data-bs-toggle="modal"
           data-bs-target="#exampleModal"
         >
@@ -84,7 +84,7 @@
   </div>
 </section>
 
-<section class="container">
+<section class="container" style="text-align: center">
   <!-------------------------- Banner ----------------------->
   <div class="row banner">
     <div class="col-md">
@@ -94,12 +94,12 @@
 
   <div class="row row-product">
     <div
-      id="{{ i.id }}"
+      id="{{ i._id }}"
       class="col-sm col-product"
       *ngFor="let i of getSensorList()"
     >
       <!-------------------------- Name ----------------------->
-      <p class="product-name" (click)="showProductPage2(i.id)">
+      <p class="product-name" (click)="showProductPage2(i._id)">
         {{ i.productName }}
       </p>
       <!-------------------------- Image ----------------------->
@@ -107,10 +107,10 @@
         src="{{ i.productImg }}"
         style="width: 200px; height: 200px"
         alt="..."
-        (click)="showProductPage2(i.id)"
+        (click)="showProductPage2(i._id)"
       />
       <!-------------------------- Price ----------------------->
-      <p class="product-price" (click)="showProductPage2(i.id)">
+      <p class="product-price" (click)="showProductPage2(i._id)">
         {{ (i.productPrice).toString() | currency: "BRL" }}
       </p>
       <!-------------------------- Button ----------------------->
@@ -118,7 +118,7 @@
         <button
           class="btn btn-outline-success btn-cart"
           type="submit"
-          (click)="addToCart(i.id)"
+          (click)="addToCart(i._id)"
           data-bs-toggle="modal"
           data-bs-target="#exampleModal"
         >

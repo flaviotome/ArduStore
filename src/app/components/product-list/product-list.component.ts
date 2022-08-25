@@ -2,6 +2,7 @@ import { CartService } from './../../services/cart.service';
 import { Router } from '@angular/router';
 import { ProductService } from './../../services/product.service';
 import { Component, OnInit } from '@angular/core';
+import { Product } from 'src/app/models/product';
 
 @Component({
   selector: 'app-product-list',
@@ -15,7 +16,16 @@ export class ProductListComponent implements OnInit {
     private cartService: CartService
   ) {}
 
-  productList: any;
+  productList: Product[] = [
+    {
+      _id: '',
+      productName: '',
+      productPrice: 0,
+      productDescription: '',
+      productType: '',
+      productImg: '',
+    },
+  ];
   productType = '';
   productTypeH1 = '';
 

@@ -10,7 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductComponent implements OnInit {
   productComponentProductId: String; //loaded from ProductService
-  product: any;
+  product = {
+    _id: '',
+    productName: '',
+    productPrice: 0,
+    productDescription: '',
+    productType: '',
+    productImg: '',
+  }
 
   constructor(
     private productService: ProductService,

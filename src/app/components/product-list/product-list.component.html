@@ -8,12 +8,12 @@
 
   <div class="row row-product text-center">
     <div
-      id="{{ i.productId }}"
+      id="{{ i._id }}"
       class="col-sm col-product"
       *ngFor="let i of productList"
     >
       <!-------------------------- Name ----------------------->
-      <p class="product-name" (click)="showProductPage2(i.productId)">
+      <p class="product-name" (click)="showProductPage2(i._id)">
         {{ i.productName }}
       </p>
       <!-------------------------- Image ----------------------->
@@ -21,11 +21,11 @@
         src="{{ i.productImg }}"
         style="width: 200px; height: 200px"
         alt="..."
-        (click)="showProductPage2(i.productId)"
+        (click)="showProductPage2(i._id)"
       />
       <!-------------------------- Price ----------------------->
-      <p class="product-price" (click)="showProductPage2(i.productId)">
-        {{ i.productPrice | currency: "BRL" }}
+      <p class="product-price" (click)="showProductPage2(i._id)">
+        {{ (i.productPrice).toString() | currency: "BRL" }}
       </p>
       <p>ou</p>
       <p>10 x {{ splitPrice(i.productPrice) | currency: "BRL" }}</p>
@@ -34,7 +34,7 @@
         <button
           class="btn btn-outline-success btn-cart"
           type="submit"
-          (click)="addToCart(i.productId)"
+          (click)="addToCart(i._id)"
           data-bs-toggle="modal"
           data-bs-target="#Modal"
         >
