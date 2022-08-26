@@ -8,5 +8,6 @@ router
   .get("/products/:id", ProductController.getProductById)
   .post("/products", ProductController.postProduct)
   .put("/products/:id", ProductController.updateProduct)
-  .delete("/products/:id", ProductController.deleteProduct);
+  .delete("/products/:id", ProductController.deleteProduct)
+  .get("/productType/:productType", ProductController.getproductsByType)
 export default router;

@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ProductService {
-  listaDePRodutos: Product[] = [
+  productsList: Product[] = [
     {
       _id: '',
       productName: '',
@@ -31,33 +31,37 @@ export class ProductService {
   url = 'http://localhost:3000/products';
 
   constructor(private httpClient: HttpClient) {
-
-    this.loadProducts().subscribe((products) => {
-      this.listaDePRodutos = products;
+    this.getProducts().subscribe((products) => {
+      this.productsList = products;
     });
   }
 
   /* load de products list from database */
-  loadProducts(): Observable<Product[]> {
-    return this.httpClient.get<Product[]>(this.url);
+  getProducts(): Observable<Product[]> {
+    return this.httpClient.get<Product[]>(this.url );
+  }
+
+  //load the products from database filtered by productType.
+  getProductsByType(type: string): Observable<Product[]> {
+    return this.httpClient.get<Product[]>("http://localhost:3000/productType/"+type);
   }
 
   //find an element by its id and returns it
   getProductFromId(id: any) {
     let result: any;
-    result = this.listaDePRodutos.find((element) => element._id == id);
+    result = this.productsList.find((element) => element._id == id);
 
     return result;
   }
 
   /* filters the productList by the type */
   productListTypeFilter(type: string) {
-    return this.listaDePRodutos.filter((p) => p.productType == type);
+    return this.productsList.filter((p) => p.productType == type);
   }
 
   //return the products list
   getProductList() {
-    return this.listaDePRodutos;
+    return this.productsList;
   }
 
   //return the products that type == 'board'

@@ -1,5 +1,5 @@
 import { CartService } from './../../services/cart.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ProductService } from './../../services/product.service';
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product';
@@ -13,7 +13,8 @@ export class ProductListComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private router: Router,
-    private cartService: CartService
+    private cartService: CartService,
+    private route: ActivatedRoute
   ) {}
 
   productList: Product[] = [
@@ -30,14 +31,19 @@ export class ProductListComponent implements OnInit {
   productTypeH1 = '';
 
   ngOnInit(): void {
-    this.productType = this.productService.productType;
-    if (this.productType == 'board') {
-      this.productList = this.getBoardList();
-      this.productTypeH1 = 'Placas';
-    } else if (this.productType == 'sensor') {
-      this.productList = this.getSensorList();
-      this.productTypeH1 = 'Sensores';
-    }
+    //refreshes the page when navbar menu has been clicked
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+
+    //gets the type param from the url (route param) to set what products will be showed
+    this.route.params.subscribe((params) => {
+      this.productType = params['type'];
+    });
+
+    this.productService
+      .getProductsByType(this.productType)
+      .subscribe((products) => {
+        this.productList = products;
+      });
   }
   //receives the id of the DIV that was selected, sends the ID to Service and opens the Product page
   showProductPage($event: any) {
@@ -56,17 +62,7 @@ export class ProductListComponent implements OnInit {
     this.cartService.addToCart(this.productService.getProductFromId(id));
   }
 
-  getBoardList() {
-    return this.productService.getBoardList();
-  }
-  getSensorList() {
-    return this.productService.getSensorList();
-  }
-  getProductList() {
-    return this.productService.getProductList();
-  }
-
-  splitPrice(price: any){
-    return price/10
+  splitPrice(price: any) {
+    return price / 10;
   }
 }

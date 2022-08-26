@@ -28,4 +28,8 @@ export class HeaderComponent implements OnInit {
   getTotalCost() {
     return this.cartService.getTotalCost();
   }
+
+  teste(){
+    this.router.navigateByUrl("/productType/board")
+  }
 }

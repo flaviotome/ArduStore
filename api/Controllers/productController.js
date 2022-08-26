@@ -69,6 +69,18 @@ class ProductController {
       }
     });
   };
+
+  static getproductsByType = (req, res) => {
+    const type = req.params.productType;
+
+    products.find({ productType : type },  (err,product) => {
+      if (err) {
+        res.status(500).send("Erro ao carregar as placas" + err.message);
+      } else {
+        res.status(200).send(product);
+      }
+    });
+  };
 }
 
 export default ProductController;

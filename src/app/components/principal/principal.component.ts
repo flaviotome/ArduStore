@@ -16,9 +16,9 @@ export class PrincipalComponent implements OnInit {
     private cartService: CartService
   ) {}
 
-  ngOnInit(): void {
-
-  }
+  boardList: any;
+  sensorList: any;
+  ngOnInit(): void {}
 
   showProductListPage(type: String) {
     this.router.navigateByUrl('/productList');
@@ -42,13 +42,22 @@ export class PrincipalComponent implements OnInit {
   }
 
   getBoardList() {
-    return this.productService.getBoardList();
+     this.productService.getProductsByType('board').subscribe((products) => {
+       this.boardList = products;
+     });
+    return this.boardList;
   }
   getSensorList() {
-    return this.productService.getSensorList();
+    this.productService.getProductsByType('sensor').subscribe((products) => {
+      this.sensorList = products;
+    });
+
+    return this.sensorList;
   }
   getProductList() {
-    return this.productService.getProductList();
+    this.productService.getProducts().subscribe((products) => {
+      return products;
+    });
   }
 
   splitPrice(price: any) {

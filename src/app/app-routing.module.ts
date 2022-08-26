@@ -12,10 +12,11 @@ const routes: Routes = [
   { path: 'boards', component: ProductListComponent},
   { path: 'sensors', component: ProductListComponent},
   { path: 'cart', component: CartComponent },
+  { path: 'productType/:type', component: ProductListComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'} )],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
