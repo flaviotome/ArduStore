@@ -13,6 +13,7 @@ const routes: Routes = [
   { path: 'sensors', component: ProductListComponent},
   { path: 'cart', component: CartComponent },
   { path: 'productType/:type', component: ProductListComponent },
+  { path: 'product/:id', component: ProductComponent },
 ];
 
 @NgModule({

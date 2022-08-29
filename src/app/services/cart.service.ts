@@ -1,16 +1,22 @@
+import { Product } from './../models/product';
+import { LocalStorageService } from './local-storage.service';
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
-  cartList: any[] = [];
+  //cartList: any[] = [];
+  cartList: Product[] = [];
   totalCost = 0;
+  teste = '';
+  constructor(private localStorageService: LocalStorageService) {
+    this.cartList = this.localStorageService.getItem('cartList');
+  }
 
-  constructor() {}
-
-  addToCart(produto: any) {
+  addToCart(produto: Product) {
     this.cartList.push(produto);
+    this.localStorageService.setItem('cartList', this.cartList);
     this.getTotalCost();
     return this.cartList;
   }
@@ -18,10 +24,10 @@ export class CartService {
   deleteFromCart(id: any) {
     //removes an item of the cart
     this.cartList.splice(
-      this.cartList.findIndex((e) => e.productId == id),
+      this.cartList.findIndex((e) => e._id == id),
       1
     );
-
+    this.localStorageService.setItem('cartList', this.cartList);
     this.getTotalCost();
   }
 

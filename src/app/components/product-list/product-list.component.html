@@ -11,9 +11,10 @@
       id="{{ i._id }}"
       class="col-sm col-product"
       *ngFor="let i of productList"
+      routerLink="/product/{{ i._id }}"
     >
       <!-------------------------- Name ----------------------->
-      <p class="product-name" (click)="showProductPage2(i._id)">
+      <p class="product-name">
         {{ i.productName }}
       </p>
       <!-------------------------- Image ----------------------->
@@ -21,11 +22,10 @@
         src="{{ i.productImg }}"
         style="width: 200px; height: 200px"
         alt="..."
-        (click)="showProductPage2(i._id)"
       />
       <!-------------------------- Price ----------------------->
-      <p class="product-price" (click)="showProductPage2(i._id)">
-        {{ (i.productPrice).toString() | currency: "BRL" }}
+      <p class="product-price">
+        {{ i.productPrice.toString() | currency: "BRL" }}
       </p>
       <p>ou</p>
       <p>10 x {{ splitPrice(i.productPrice) | currency: "BRL" }}</p>
@@ -35,6 +35,7 @@
           class="btn btn-outline-success btn-cart"
           type="submit"
           (click)="addToCart(i._id)"
+          (click)="$event.stopPropagation()"
           data-bs-toggle="modal"
           data-bs-target="#Modal"
         >

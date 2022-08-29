@@ -10,15 +10,9 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./product.component.scss'],
 })
 export class ProductComponent implements OnInit {
-  productComponentProductId: String; //loaded from ProductService
-  product = {
-    _id: '',
-    productName: '',
-    productPrice: 0,
-    productDescription: '',
-    productType: '',
-    productImg: '',
-  }
+  product : any;
+
+  productId = '';
 
   constructor(
     private productService: ProductService,
@@ -26,21 +20,25 @@ export class ProductComponent implements OnInit {
     private route: ActivatedRoute
   ) {
     //loads the product Id from the ProductService
-    this.productComponentProductId = this.productService.productId;
-
-
-
+    //this.productComponentProductId = this.productService.productId;
   }
 
   ngOnInit(): void {
-    this.product = this.productService.getProductFromId(
-      this.productService.productId
-    );
+    /* gets the type param from the url (route param) to set what products will be showed */
+    this.route.params.subscribe((params) => {
+      this.productId = params['id'];
+    });
 
+    this.productService.getProductFromId(this.productId).subscribe( (product) => {
+      this.product = product
+    } )
   }
 
+  /* adds the selected produtc to the cartServices's list */
   addToCart(id: String) {
-    this.cartService.addToCart(this.productService.getProductFromId(id));
+    this.productService.getProductFromId(id).subscribe((product) => {
+      this.cartService.addToCart(product);
+    });
   }
 
   splitPrice(price: any) {

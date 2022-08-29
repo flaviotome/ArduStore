@@ -48,10 +48,8 @@ export class ProductService {
 
   //find an element by its id and returns it
   getProductFromId(id: any) {
-    let result: any;
-    result = this.productsList.find((element) => element._id == id);
+    return this.httpClient.get<Product>("http://localhost:3000/product/"+id);
 
-    return result;
   }
 
   /* filters the productList by the type */

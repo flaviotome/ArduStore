@@ -13,7 +13,7 @@
         <img class="product-img" src="{{ i.productImg }}" />
         <span class="product-name">{{ i.productName }} </span>
         <span class="product-price">
-          {{ i.productPrice | currency: "BRL" }}
+          {{ (i.productPrice).toString() | currency: "BRL" }}
         </span>
 
         <!-------------------------- Remove buttom ----------------------->
@@ -53,7 +53,7 @@
                   type="button"
                   class="btn btn-secondary"
                   data-bs-dismiss="modal"
-                  (click)="removeFromCartList(i.productId)"
+                  (click)="removeFromCartList(i._id)"
                 >
                   Remover
                 </button>

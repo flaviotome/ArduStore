@@ -34,7 +34,7 @@ export class ProductListComponent implements OnInit {
     //refreshes the page when navbar menu has been clicked
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
 
-    //gets the type param from the url (route param) to set what products will be showed
+    /* gets the type param from the url (route param) to set what products will be showed */
     this.route.params.subscribe((params) => {
       this.productType = params['type'];
     });
@@ -45,21 +45,12 @@ export class ProductListComponent implements OnInit {
         this.productList = products;
       });
   }
-  //receives the id of the DIV that was selected, sends the ID to Service and opens the Product page
-  showProductPage($event: any) {
-    $event.stopPropagation();
-    this.productService.productId = $event.target.id;
-    this.router.navigateByUrl('/product');
-  }
 
-  showProductPage2(id: any) {
-    this.productService.productId = id;
-    this.router.navigateByUrl('/product');
-  }
-
-  //adds the selected produtc in the cartServices's list
+  /* adds the selected produtc to the cartServices's list */
   addToCart(id: String) {
-    this.cartService.addToCart(this.productService.getProductFromId(id));
+    this.productService.getProductFromId(id).subscribe((product) => {
+      this.cartService.addToCart(product);
+    });
   }
 
   splitPrice(price: any) {
