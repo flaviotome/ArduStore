@@ -6,16 +6,17 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class CartService {
-  //cartList: any[] = [];
   cartList: Product[] = [];
   totalCost = 0;
-  teste = '';
   constructor(private localStorageService: LocalStorageService) {
+    /* get the list stored in the browser's Local Store  */
     this.cartList = this.localStorageService.getItem('cartList');
   }
 
   addToCart(produto: Product) {
+    /* adds the new product in the cart list */
     this.cartList.push(produto);
+    /* adds the new product in the local storage */
     this.localStorageService.setItem('cartList', this.cartList);
     this.getTotalCost();
     return this.cartList;
