@@ -20,6 +20,21 @@ class ProductController {
       }
     });
   };
+  /************** GET BY NAME ********************/
+  static getProductByName = (req, res) => {
+    const name = req.params.productName;
+
+    products.find(
+      { productName: { $regex: ".*" + name + ".*" } },
+      (err, product) => {
+        if (err) {
+          res.status(500).send("Nenhum produto encontrado!");
+        } else {
+          res.status(200).send(product);
+        }
+      }
+    );
+  };
 
   /************** POST ********************/
   static postProduct = (req, res) => {
@@ -73,7 +88,7 @@ class ProductController {
   static getproductsByType = (req, res) => {
     const type = req.params.productType;
 
-    products.find({ productType : type },  (err,product) => {
+    products.find({ productType: type }, (err, product) => {
       if (err) {
         res.status(500).send("Erro ao carregar as placas" + err.message);
       } else {

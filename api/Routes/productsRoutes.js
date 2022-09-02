@@ -10,4 +10,5 @@ router
   .put("/products/:id", ProductController.updateProduct)
   .delete("/products/:id", ProductController.deleteProduct)
   .get("/productType/:productType", ProductController.getproductsByType)
+  .get("/product/name/:productName", ProductController.getProductByName)
 export default router;
