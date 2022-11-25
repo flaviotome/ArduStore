@@ -1,35 +1,55 @@
-<section class="container">
-  <!-------------------------- Banner ----------------------->
-  <div class="row m-0 banner mb-5">
-    <div class="col-md">
-      <span> {{ product.productName }} </span>
+<section class="container" style="text-align: center;">
+  <!-------------------------- Spinner ----------------------->
+  <div *ngIf="!dataLoaded; else productSection">
+    <div class="spinner-border" role="status" style="margin-top: 30px ;">
+      <span class="sr-only">Loading...</span>
     </div>
   </div>
 
-  <div class="row row-product">
-    <div class="col-lg col-product">
-      <img class="product-image" src="{{ product.productImg }}" />
+  <ng-template #productSection>
+    <!-------------------------- Banner ----------------------->
+    <div class="row m-0 banner mb-5">
+      <div class="col-md">
+        <span> {{ product.productName }} </span>
+      </div>
     </div>
-    <div class="col-lg col-product col-product-description">
-      <p class="p-price">{{ product.productPrice | currency: "BRL" }}</p>
-      <p>Em até 10 x {{ splitPrice(product.productPrice) | currency: "BRL" }}</p>
-      <p><button
-        class="btn btn-cart"
-        type="submit"
-        (click)="addToCart(product._id)"
-        data-bs-toggle="modal"
-        data-bs-target="#Modal"
-      >
-        <i class="fa fa-shopping-cart"></i> Adicionar ao Carrinho
-      </button></p>
-      <img class="pix-img" src="assets/pix.png" />
-      <img class="pix-img" src="assets/credit.png" />
-      <img class="pix-img" src="assets/boleto.png" />
-      <div class="line"></div>
-      <p class="p-description">{{ product.productDescription }}</p>
-      <div class="line"></div>
+
+    <!-------------------------- Product ----------------------->
+
+    <div class="row row-product">
+      <!-------------------------- Image ----------------------->
+      <div class="col-lg">
+        <img class="product-image" src="{{ product.productImg }}" />
+      </div>
+      <!--------------------- Description ----------------------->
+      <div class="col-lg">
+        <!--------------------- Price ----------------------->
+        <p class="p-price">{{ product.productPrice | currency: "BRL" }}</p>
+        <p>
+          Em até 10 x {{ splitPrice(product.productPrice) | currency: "BRL" }}
+        </p>
+        <p>
+          <!--------------------- Button ----------------------->
+          <button
+            class="btn btn-cart"
+            type="submit"
+            (click)="addToCart(product._id)"
+            data-bs-toggle="modal"
+            data-bs-target="#Modal"
+          >
+            <i class="fa fa-shopping-cart"></i> Adicionar ao Carrinho
+          </button>
+        </p>
+        <!--------------------- images ----------------------->
+        <img class="pix-img" src="assets/pix.png" />
+        <img class="pix-img" src="assets/credit.png" />
+        <img class="pix-img" src="assets/boleto.png" />
+        <div class="line"></div>
+        <p class="p-description">{{ product.productDescription }}</p>
+        <div class="line"></div>
+      </div>
     </div>
-  </div>
+  </ng-template>
 </section>
 
 <!---------------- Modal ----------------->

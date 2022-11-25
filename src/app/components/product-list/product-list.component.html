@@ -1,49 +1,59 @@
-<section class="container">
+<section class="container" style="text-align: center">
   <!-------------------------- Banner ----------------------->
   <div class="row m-0 banner mb-5">
     <div class="col-md">
-      <span> {{ productTypeH1 }} </span>
+      <span> {{ bannerText }} </span>
     </div>
   </div>
 
-  <div class="row row-product text-center">
-    <div
-      id="{{ i._id }}"
-      class="col-sm col-product"
-      *ngFor="let i of productList"
-      routerLink="/product/{{ i._id }}"
-    >
-      <!-------------------------- Name ----------------------->
-      <p class="product-name">
-        {{ i.productName }}
-      </p>
-      <!-------------------------- Image ----------------------->
-      <img
-        src="{{ i.productImg }}"
-        style="width: 200px; height: 200px"
-        alt="..."
-      />
-      <!-------------------------- Price ----------------------->
-      <p class="product-price">
-        {{ i.productPrice.toString() | currency: "BRL" }}
-      </p>
-      <p>ou</p>
-      <p>10 x {{ splitPrice(i.productPrice) | currency: "BRL" }}</p>
-      <!-------------------------- Button ----------------------->
-      <p>
-        <button
-          class="btn btn-outline-success btn-cart"
-          type="submit"
-          (click)="addToCart(i._id)"
-          (click)="$event.stopPropagation()"
-          data-bs-toggle="modal"
-          data-bs-target="#Modal"
-        >
-          <i class="fa fa-shopping-cart"></i> Adicionar ao Carrinho
-        </button>
-      </p>
+  <!-------------------------- Spinner ----------------------->
+
+  <div *ngIf="!dataLoaded; else productSection">
+    <div class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
     </div>
   </div>
+
+  <ng-template #productSection>
+    <div class="row row-product text-center">
+      <div
+        id="{{ i._id }}"
+        class="col-sm col-product"
+        *ngFor="let i of productList"
+        routerLink="/product/{{ i._id }}"
+      >
+        <!-------------------------- Name ----------------------->
+        <p class="product-name">
+          {{ i.productName }}
+        </p>
+        <!-------------------------- Image ----------------------->
+        <img
+          src="{{ i.productImg }}"
+          style="width: 200px; height: 200px"
+          alt="..."
+        />
+        <!-------------------------- Price ----------------------->
+        <p class="product-price">
+          {{ i.productPrice.toString() | currency: "BRL" }}
+        </p>
+        <p>ou</p>
+        <p class="product-splited-price">10 x {{ splitPrice(i.productPrice) | currency: "BRL" }}</p>
+        <!-------------------------- Button ----------------------->
+        <p>
+          <button
+            class="btn btn-outline-success btn-cart"
+            type="submit"
+            (click)="addToCart(i._id)"
+            (click)="$event.stopPropagation()"
+            data-bs-toggle="modal"
+            data-bs-target="#Modal"
+          >
+            <i class="fa fa-shopping-cart"></i> Adicionar ao Carrinho
+          </button>
+        </p>
+      </div>
+    </div>
+  </ng-template>
 </section>
 
 <!---------------- Modal ----------------->

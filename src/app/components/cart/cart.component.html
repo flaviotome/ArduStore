@@ -1,19 +1,19 @@
-<section class="container-fluid p-0 section-cart">
+<section class="container p-0 section-cart">
   <!-------------------------- Banner ----------------------->
-  <div class="row m-0 banner" >
-    <div class="col-md" >
-      <span > Carrinho </span>
+  <div class="row m-0 banner">
+    <div class="col-md">
+      <span> Carrinho </span>
     </div>
   </div>
 
-<!-------------------------- Cart List ----------------------->
+  <!-------------------------- Cart List ----------------------->
   <div class="row row-cart-list">
     <ul class="list-group list-group-flush">
       <li class="list-group-item d-flex" *ngFor="let i of getCartList()">
         <img class="product-img" src="{{ i.productImg }}" />
         <span class="product-name">{{ i.productName }} </span>
         <span class="product-price">
-          {{ (i.productPrice).toString() | currency: "BRL" }}
+          {{ i.productPrice.toString() | currency: "BRL" }}
         </span>
 
         <!-------------------------- Remove buttom ----------------------->
@@ -37,7 +37,7 @@
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <i class="fa fa-warning" style="margin-left: auto; font-size: 40px;"></i>
                 <button
                   type="button"
                   class="btn-close"
@@ -74,7 +74,9 @@
     <!-------------------------- Total cost ----------------------->
     <div class="container row" *ngIf="getTotalCost() > 0; else elseBlock">
       <div class="col-6">
-        <span class="total-cost-txt">Valor total: {{ getTotalCost() | currency: "BRL" }}</span>
+        <span class="total-cost-txt"
+          >Valor total: {{ getTotalCost() | currency: "BRL" }}</span
+        >
       </div>
 
       <div class="col-6 d-flex">
@@ -85,7 +87,7 @@
       <p style="text-align: center">
         <i class="fa fa-warning" style="font-size: 50px"></i>
       </p>
-      <span style="text-align: center">O Carrinho está vazio</span>
+      <span style="text-align: center;">O Carrinho está vazio</span>
     </ng-template>
   </div>
 </section>

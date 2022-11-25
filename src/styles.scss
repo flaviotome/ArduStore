@@ -12,16 +12,20 @@ html, body{
 }
 
 .col-product {
-  margin: 10px;
+  margin: 5px;
   background-color: white;
   border-radius: 20px;
-
+  max-width: 100px;
+  border-style: none;
 }
 
 .col-product:hover {
-  opacity: .75;
-  transition: 0.25s opacity;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 20px;
+  border-color:#99B4BF;
   cursor: pointer;
+  transition: 1s border-style;
 }
 
 .product-name {
@@ -29,6 +33,15 @@ html, body{
   font-size: large;
 }
 
+.product-price{
+  color:#253C59;
+  font-weight: bold;
+}
+
+.product-splited-price{
+  color: #BF8D30;
+  font-weight: bolder;
+}
 
 /*--------- add to cart Button ------------ */
 .btn-cart {

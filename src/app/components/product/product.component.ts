@@ -10,7 +10,8 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./product.component.scss'],
 })
 export class ProductComponent implements OnInit {
-  product : any;
+  product: any;
+  dataLoaded = false;
 
   productId = '';
 
@@ -24,14 +25,18 @@ export class ProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.dataLoaded = false;
     /* gets the type param from the url (route param) to set what products will be showed */
     this.route.params.subscribe((params) => {
       this.productId = params['id'];
     });
 
-    this.productService.getProductFromId(this.productId).subscribe( (product) => {
-      this.product = product
-    } )
+    this.productService
+      .getProductFromId(this.productId)
+      .subscribe((product) => {
+        this.product = product;
+        this.dataLoaded = true;
+      });
   }
 
   /* adds the selected produtc to the cartServices's list */

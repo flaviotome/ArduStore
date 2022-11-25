@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ProductService } from './../../services/product.service';
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product';
+import { ThisReceiver } from '@angular/compiler';
 
 @Component({
   selector: 'app-product-list',
@@ -28,9 +29,12 @@ export class ProductListComponent implements OnInit {
     },
   ];
   productType = '';
-  productTypeH1 = '';
+  bannerText = '';
+
+  dataLoaded = false;
 
   ngOnInit(): void {
+    this.dataLoaded = false;
     //refreshes the page when navbar menu has been clicked
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
 
@@ -39,10 +43,16 @@ export class ProductListComponent implements OnInit {
       this.productType = params['type'];
     });
 
+    if (this.productType == '632c79988579518f748d01a8')
+      this.bannerText = 'Placas';
+    else if (this.productType == '632c9398593e9d634cd6ab3b')
+      this.bannerText = 'Sensores';
+
     this.productService
       .getProductsByType(this.productType)
       .subscribe((products) => {
         this.productList = products;
+        this.dataLoaded = true;
       });
   }
 

@@ -18,16 +18,28 @@ export class PrincipalComponent implements OnInit {
   boardList: any;
   sensorList: any;
 
+  dataLoaded = false;
+
+  boardID = '632c79988579518f748d01a8';
+  sensorID = '632c9398593e9d634cd6ab3b';
+
   ngOnInit(): void {
+    this.dataLoaded = false;
+
     /* load the boards from database */
-    this.productService.getProductsByType('board').subscribe((products) => {
-      this.boardList = products;
-    });
+    this.productService
+      .getProductsByType(this.boardID)
+      .subscribe((products) => {
+        this.boardList = products;
+      });
 
     /* load the sensors from database */
-    this.productService.getProductsByType('sensor').subscribe((products) => {
-      this.sensorList = products;
-    });
+    this.productService
+      .getProductsByType(this.sensorID)
+      .subscribe((products) => {
+        this.sensorList = products;
+        this.dataLoaded = true;
+      });
   }
 
   /* adds the selected produtc to the cartServices's list */

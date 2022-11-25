@@ -9,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
+  boardID = '632c79988579518f748d01a8';
+  sensorID = '632c9398593e9d634cd6ab3b';
   constructor(
     private router: Router,
     private productService: ProductService,
@@ -29,7 +31,7 @@ export class HeaderComponent implements OnInit {
     return this.cartService.getTotalCost();
   }
 
-  teste(){
-    this.router.navigateByUrl("/productType/board")
+  teste() {
+    this.router.navigateByUrl('/productType/board');
   }
 }

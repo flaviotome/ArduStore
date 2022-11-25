@@ -42,8 +42,8 @@ export class ProductService {
   }
 
   //load the products from database filtered by productType.
-  getProductsByType(type: string): Observable<Product[]> {
-    return this.httpClient.get<Product[]>("http://localhost:3000/productType/"+type);
+  getProductsByType(typeId: string): Observable<Product[]> {
+    return this.httpClient.get<Product[]>("http://localhost:3000/productType/"+typeId);
   }
 
   //find an element by its id and returns it
